@@ -10,7 +10,6 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-
 class Ui_uv_test(object):
     def setupUi(self, uv_test):
         uv_test.setObjectName("uv_test")
@@ -34,6 +33,7 @@ class Ui_uv_test(object):
         self.verticalLayout_7.setSizeConstraint(QtWidgets.QLayout.SetFixedSize)
         self.verticalLayout_7.setObjectName("verticalLayout_7")
         self.pushButton_Auto = QtWidgets.QPushButton(self.horizontalLayoutWidget)
+        self.pushButton_Auto.setCheckable(True)
         self.pushButton_Auto.setMinimumSize(QtCore.QSize(300, 200))
         font = QtGui.QFont()
         font.setPointSize(30)
@@ -163,10 +163,20 @@ class Ui_uv_test(object):
         self.pushButton_ShowMap.setText(_translate("uv_test", "Show Map"))
         self.pushButton_CreateMap.setText(_translate("uv_test", "Create Map"))
         self.pushButton_Exit.setText(_translate("uv_test", "Exit"))
+        
+        self.pushButton_Auto.clicked.connect(self.btn_auto_click)
 
+    def btn_auto_click(self):
+        if self.pushButton_Auto.isChecked():
+            self.pushButton_Auto.setText("STOP\nAuto Motion")
+            self.pushButton_Auto.setStyleSheet("background-color : pink")
+        else:
+            self.pushButton_Auto.setText("Auto Motion")
+            self.pushButton_Auto.setStyleSheet("background-color : lightgrey")
 
 if __name__ == "__main__":
     import sys
+
     app = QtWidgets.QApplication(sys.argv)
     uv_test = QtWidgets.QWidget()
     ui = Ui_uv_test()
